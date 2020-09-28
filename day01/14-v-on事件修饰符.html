@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <a @click="fn1(100,$event)" href="http://www.baidu.com">去百度</a>
+      <div @click="fatherFn">
+        <a @click.stop.prevent="fn2(100)" href="http://www.baidu.com">去百度</a>
+      </div>
+    </div>
+
+    <script src="./vue.js"></script>
+    <!-- 
+        需求: 阻止a标签的默认跳转
+             vue中提供了事件修饰符, 可以非常方便的阻止默认行为, 阻止冒泡
+             .stop 阻止冒泡
+             .prevent 阻止默认行为
+         -->
+    <script>
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue',
+        },
+        methods: {
+          fn1(number, e) {
+            e.preventDefault();
+          },
+          fn2(number) {
+            console.log(number);
+            alert('点击');
+          },
+          fatherFn() {
+            alert('父元素被点击');
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

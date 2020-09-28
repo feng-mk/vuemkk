@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <div id="box"><h1>{{msg}}</h1></div> -->
+    <div id="kkk">
+      <h1>{{aaa}}</h1>
+    </div>
+
+    <!-- 
+        1，下载 npm i vue
+        2，引包
+        3，使用,创建vue实例
+       -->
+    <script src="./vue.js"></script>
+    <script>
+      //    只要引入了vue，就在全局，有一个Vue构造函数
+
+      /* const vm = new Vue({
+        // 指定视图 + 数据
+        // el：element 指定vue所管理的视图范围，只是一个选择器(一般用id)
+        // data:{
+        //     smg:'xxx'
+        // }
+        el: '#box',
+        data: {
+          msg: 'kk',
+        },
+      }); */
+
+      const vm = new Vue({
+        el: '#kkk',
+        data: {
+          aaa: 'hello kk',
+        },
+      });
+    </script>
+  </body>
+</html>
