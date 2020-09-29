@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .base {
+        width: 300px;
+        height: 200px;
+        background: red;
+        margin: 10px;
+      }
+      .pink {
+        background: pink;
+      }
+      .big {
+        width: 400px;
+        height: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- addClass 添加类名  removeClass 移除类名
+        v-bind 对于class类名操作的增强
+    注意点：
+        :class 不会影响到默认的 class 类名
+    语法：
+        1,:class="对象"
+            键值对：键：就是类名，值就是一个布尔值（true就是添加这个类名，false就是不添加）
+        
+        2,:class="数组"
+            数组里面的项就是要添加的类名
+            [数组1，数组2，数组3.。。]
+
+        3,:class="对象/数组" 写法上，是直接内联在模板中编写，对象或数组
+    -->
+    <div id="app">
+      <div class="base" :class="obj">{{ msg }}</div>
+      <div class="base" :class="arr">{{ msg }}</div>
+      <div class="base" :class="{pink:isPink,big:isBig}">{{ msg }}</div>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue',
+          obj: {
+            pink: true,
+            big: false,
+          },
+          arr: ['pink', 'big'],
+          isPink: false,
+          isBig: true,
+        },
+      });
+    </script>
+  </body>
+</html>

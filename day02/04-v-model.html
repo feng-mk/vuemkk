@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+        v-model
+            作用：给表单元素使用，可以实现双向数据绑定
+            1，给表单元素使用，设置表单元素，对于不同的元素设置不同的属性
+            input:text (value)  input:checkbox(checked)  textarea(value) ...
+            2,可以实现双向数据绑定
+                数据变化了，试图自动更新
+                试图变化了，数据自动更新
+            语法：
+                v-model="值"
+
+        大大地提升开发的便利
+
+         -->
+    <div id="app">
+      <input type="text" v-model="msg" />
+
+      <hr color="red" />
+      用户名：<input type="text" v-model="usename" /> <br /><br />
+      密码：<input type="password" v-model="password" /> <br /><br />
+      <button>登录</button>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue',
+          usename: '',
+          password: '',
+        },
+      });
+    </script>
+  </body>
+</html>

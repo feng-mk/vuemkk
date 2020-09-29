@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+          v-bind 对于 style 的增强
+            :style="对象" => :style => "obj"
+                                   =>:style="{width:'300px'}"
+       -->
+    <div id="app">
+      <!-- 行内权重太高，用不起 -->
+      <div
+        style="width: 300px; height: 200px; background-color: red"
+        :style="styleObj"
+      ></div>
+
+      <div
+        style="width: 300px; height: 200px; background-color: red"
+        :style="{ width:'500px',height:'400px',backgroundColor:'blue' }"
+      ></div>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue',
+          styleObj: {
+            width: '400px',
+            height: '300px',
+            backgroundColor: 'pink',
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

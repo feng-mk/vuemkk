@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 数据
+
+      const data = {
+        name: 'zs',
+        age: 18,
+        desc: '不错',
+      };
+
+      /* 需求：对 data 的 age 属性，进行劫持
+       es5语法：Object.defineProperty 
+       Object.defineProperty 缺点：
+       1，一次只能劫持一个属性  需要for遍历对象的
+       2,如果在劫持之后，又新增了一个属性，需要额外进行劫持操作
+       
+       */
+
+      for (let key in data) {
+        let temp = data[key];
+        Object.defineProperty(data, key, {
+          get() {
+            console.log('获取操作');
+            return temp;
+          },
+          set(value) {
+            // 进行设置操作
+            console.log('设置操作');
+            temp = value;
+          },
+        });
+      }
+      console.log(data.name);
+      console.log(data.age);
+      console.log(data.desc);
+
+      /*  console.log(data.age);
+      data.age = 30;
+      console.log(data.age); */
+    </script>
+  </body>
+</html>

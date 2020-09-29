@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      p {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{msg}}</p>
+      <input type="text" v-model="msg" />
+      <hr />
+      <p>{{desc}}</p>
+      <textarea v-model="desc"></textarea>
+      <!-- 计算属性和过滤器差别在哪？ -->
+      <!-- select框的value值就是选中的option的value值，既可以用于获取也可以用于设置 -->
+      <hr />
+      <p>{{hobbyId}}</p>
+      <select v-model="hobbyId">
+        <option value="1">吃饭</option>
+        <option value="2">睡觉</option>
+        <option value="3">打豆豆</option>
+      </select>
+      <hr />
+      <input type="checkbox" v-model="isSinge" checked />是否单身
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+      /* 
+        表单元素如果设置了v-model，那么就会忽略掉默认的 value，checked 等初始值
+
+        v-model 作用于其他表单元素
+        textarea  select/option  input:checkbox
+
+        双向绑定，可以非常方便的进行表单元素值的设置 和 获取
+         */
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue',
+          desc: '描述：大沙堎，傻傻傻，哈哈哈',
+          hobbyId: 3,
+          isSinge: false,
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+        目前稳定：vue 2.6.12
+        es5语法：Object.defineProperty 
+        es6 语法：proxy 代理
+
+
+        proxy 代理
+        Proxy这个词的原意是代理， 可以理解成在目标对象之前设置一层拦截，
+        外界对该对象的访问，都必须先通过这层拦截。
+        */
+      const data = {
+        name: 'zs',
+        age: 18,
+        desc: '不错',
+      };
+      /* 
+        data指的是代理的目标对象
+        obj指的是代理对象
+        */
+      const obj = new Proxy(data, {
+        // target:代理的目标对象=》data
+        // key ：键 属性名
+        get(target, key) {
+          // console.log(target === data)  true
+          console.log('get操作', target, key);
+          return target[key];
+        },
+        set(target, key, value) {
+          console.log('set操作');
+          target[key] = value;
+        },
+      });
+
+      //   将来代理过了后，无论是设置操作还是获取操作，都找代理对象 obj
+      /* console.log(obj.name);
+      console.log(obj.age); */
+      /* obj.age = 18;
+      obj.nme = 'zs'; */
+
+      //   新增信息
+      obj.info = '个人信息';
+      obj.info = 'jhjhj';
+      console.log(obj.info);
+    </script>
+  </body>
+</html>
