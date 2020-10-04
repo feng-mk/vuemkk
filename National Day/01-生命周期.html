@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+    生命周期
+        指的是一个事物 从出生到消亡的过程
+    vue生命周期
+        指的是从vue实例创建出来（new Vue（））到 vue 实力被销毁的过程（每一个vue 组件，也是一个个vue实例）
+    为什么学vue周期？是为了改变生命周期吗？
+        不是为了改变生命周期，我们可以在生命周期的不同阶段，做一些事情，影响这个实例
+
+    初始化阶段----数据更新阶段---销毁阶段
+    初始化数据 （开始有数据，且数据是响应式的）
+      1，injections 注入 将data 中定义的属性，注入（添加）到当前vue实例上
+      2，reactivity 响应式  对vm 实例上数据（data注入的）进行响应式处理，对于数据进行劫持 Object.defineProperty 只有劫持了，将来的数据变化了，视图才能自动更新
+    
+    初始化阶段段
+      如果没有配置 el 视图，vue 的实例化，就不会往下进行了，会一直等，直到等到 vm.$mount(el) 被调用，才会继续
+      将视图盒子的 outerHTML作为模板进行编译，将来用于渲染
+      根据 模板 和 数据 创建对应的结构 并且替换原有的 el 视图容器
+    数据更新阶段
+      当数据变化了，要更新视图了，不会立刻更新会对比新旧 dome 的不同，进行差异化更新
+      虚拟dome：就是一个用js对象模拟的dome结构，
+      为什么不对比真实的dome，而对比虚拟的dome？--》
+        性能问题，真实dome性能太多了，非常复杂，对比起来不方便
+    
+    实例销毁阶段
+      释放资源
+      销毁释放监听器
+      销毁释放子组件
+      销毁事件监听
+     -->
+    <!-- <img src="./Snipaste_2020-10-04_10-23-29.png" alt="" />
+    <img src="./Snipaste_2020-10-04_10-24-12.png" alt="" /> -->
+
+    <div id="app">
+      <h1>{{ msg }}</h1>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue',
+        },
+        template: '<a href="#">我是a标签-{{msg}}</a>',
+      });
+
+      /* const vm = new Vue({
+        // el: '#app',
+        data: {
+          msg: 'hello vue',
+        },
+      });
+      // 指定视图的另一种方式，vm.$mount
+      vm.$mount('#app');
+      console.log(vm.msg); */
+
+      /* new Vue({
+        data: {
+          msg: '嘎嘎',
+        },
+      }).$mount('#app'); */
+    </script>
+  </body>
+</html>
