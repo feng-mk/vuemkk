@@ -20,13 +20,13 @@
     <div id="app">
       <div class="container">
         <!-- 搜索 -->
-        <input
+        <!-- <input
           v-model.trim="key"
           type="text"
           class="form-control search"
           placeholder="输入关键字进行搜索"
         />
-        <button @click="search" class="btn btn-primary">搜索</button>
+        <button @click="search" class="btn btn-primary">搜索</button> -->
         <!-- 表格 -->
         <table class="table table-bordered table-hover">
           <thead>
@@ -140,15 +140,15 @@
               });
           },
 
-          search() {
-            // 发送搜索的ajax请求, 拿到结果, 重新渲染
-            axios
-              .get(`http://localhost:3000/list?name_like=${this.key}`)
-              .then((res) => {
-                // 将搜索的结果, 赋值给list, 用于展示
-                this.list = res.data;
-              });
-          },
+          // search() {
+          //   // 发送搜索的ajax请求, 拿到结果, 重新渲染
+          //   axios
+          //     .get(`http://localhost:3000/list?name_like=${this.key}`)
+          //     .then((res) => {
+          //       // 将搜索的结果, 赋值给list, 用于展示
+          //       this.list = res.data;
+          //     });
+          // },
         },
       });
     </script>

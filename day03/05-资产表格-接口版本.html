@@ -37,7 +37,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(item, index) in showList" :key="item.id">
+            <tr v-for="(item, index) in showList " :key="item.id">
               <td>{{ index + 1 }}</td>
               <td>{{ item.name }}</td>
               <td>{{ item.price }}</td>
@@ -141,10 +141,22 @@
         },
 
         computed: {
+          // showList() {
+          //   // 根据 key, 过滤出需要展示的内容, 条件: item.name 包含 key 就要保留
+          //   // return this.list.filter((item) => item.name.includes(this.key));
+          //   // console.log(
+          //   //   this.list.filter((v) => {
+          //   //     v.name.includes(this.key);
+          //   //   })
+          //   // );
+          //   console.log(this.list);
+          //   console.log(this.key);
+          //   return this.list.filter((v) => v.name.includes(this.key));
+          // },
           showList() {
-            // 根据 key, 过滤出需要展示的内容, 条件: item.name 包含 key 就要保留
             return this.list.filter((item) => item.name.includes(this.key));
           },
+          // },
         },
       });
     </script>
