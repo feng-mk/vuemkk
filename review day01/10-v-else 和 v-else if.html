@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1 v-if="isLogin">你好</h1>
+      <h1 v-else="isLogin">一边去</h1>
+      <br />
+      <h1 v-if="age >= 18">工作</h1>
+      <h1 v-else-if="age >= 12">看电视</h1>
+      <h1 v-else>玩</h1>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue',
+          isLogin: true,
+          age: 24,
+        },
+      });
+    </script>
+  </body>
+</html>

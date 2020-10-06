@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="box">
+      <div id="app">{{ msg }}</div>
+      <div id="app1">{{ msg }}</div>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+      // 创建vue实例
+      const vm = new Vue({
+        el: '#box', //id名字
+        data: {
+          msg: '内容',
+        },
+      });
+      /* 
+      vue 实例化过程中，将data中所有的数据，都会添加到 vm 实例上
+
+      注意：
+        1，首字母大写
+        2，el不能指定成 body html
+        3，记住：数据驱动，更新数据请操作数据
+            vm.xxx = 值
+       */
+    </script>
+  </body>
+</html>

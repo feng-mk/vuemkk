@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+        v-if  v-show 都是控制元素的显示隐藏
+        v-if = "布尔值"
+        v-show = "布尔值"
+        如果是 true ：显示。如果是 false ：隐藏
+        v-if：动态的删除和创建
+        v-show：控制css样式：display：none
+        使用场景：
+            1，如果是频繁切换：v-show
+                v-if只会频繁创建删除元素，比较消耗性能
+            2，入过某个元素，要么显示，要么隐藏，v-if，初始渲染的开销比较小
+                如果初始渲染为假，v-if是惰性的，就不会创建元素，而 v-show 还是会将元素创建出来的，然后控制css样式：display：none
+            对于 vip 用户：不用看广告，广告的显示隐藏推荐使用：v-if
+
+            判断：flag:true/false
+    -->
+    <div id="app">
+      <div v-if="true">v-if</div>
+      <div v-show="true">v-show</div>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue',
+          flag: true,
+        },
+      });
+    </script>
+  </body>
+</html>

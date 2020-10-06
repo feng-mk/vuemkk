@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+            插值表达式：{{小胡子语法}}
+            作用：使用 data 中的数据，渲染视图
+            语法：
+                {{msg}}
+                {{obj.xxx}}
+                toUpperCase() 方法将字符串小写字符转换为大写。
+                支持三元运算：
+                    obj.age >= 18?'成年':'未成年'
+            注意：
+                1，不是data中的变量，不能直接用
+                2，在{{插值表达式中}}，不要用 js 语句：if for Vue中（v-if  v-for）
+                3，不能在html标签属性中，使用{{插值表达式}}   （v-bind）
+         -->
+
+    <div id="app">
+      <h1>{{ msg }}</h1>
+      <h1>{{ money }}</h1>
+      <h1>{{ house }}</h1>
+      <h1>{{ obj.name }}</h1>
+      <h1>{{ obj.age }}</h1>
+      <h1>{{ obj.desc }}</h1>
+      <h1>{{ msg.toUpperCase() }}</h1>
+      <h1>{{obj.age >=18?'成年人':'未成年'}}</h1>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue',
+          money: 100,
+          house: '房',
+          obj: {
+            name: '库库',
+            // age: 24,
+            age: 14,
+            desc: '没毛病',
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
