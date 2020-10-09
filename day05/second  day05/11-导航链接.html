@@ -21,21 +21,21 @@
     <script src="./vue-router.js"></script>
     <script>
       // vue-router是一个官方提供的vue路由插件：帮你监视地址栏
-      // 只要引入了 vue-router，就有了 VueRouter 构造函数
-
       /* 如果要实现导航链接的跳转，专门提供了 router-link 导航链接
-      1,router-link 实际渲染出来，还是 a 标签
-      2，router-link 必须配置 to 属性，指定跳转的路由地址（跳到哪去）
-       */
+            1,router-link 实际渲染出来，还是 a 标签
+            2，router-link 必须配置 to 属性，指定跳转的路由地址（跳到哪去）
+         */
+      // 只要引入了 vue-router,就有了 VueRouter 构造函数
+      //    Vue.component(组件名，组件的配置对象)
       const router = new VueRouter({
         routes: [
+          //  redirect:  重定向  到某个链接
           { path: '/', redirect: '/home' },
-          { path: '/home', component: { template: `<div>我是Hemo</div>` } },
-          { path: '/list', component: { template: `<div>我是列表</div>` } },
-          { path: '/login', component: { template: `<div>我是登录</div>` } },
+          { path: '/home', component: { template: `<div>我是首页</div>` } },
+          { path: '/list', component: { template: `<div>我是列表页</div>` } },
+          { path: '/login', component: { template: `<div>我是登录页</div>` } },
         ],
       });
-      //   const router = new VueRouter();
       const vm = new Vue({
         el: '#app',
         data: {
