@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+            v-bind  作用：动态设置 html 标签属性（访问的是data中的数据）
+            语法：  v-bind:属性名 = '属性值'
+
+            简写:v-bind:属性名 = '属性值' =>  :属性名 = '属性值'
+                v-bind:src='值' =>  :src='值'
+         -->
+        <div id="app">
+            {{ msg }}
+        </div>
+
+        <script src="./vue.js"></script>
+        <script>
+            const vm = new Vue({
+                el: '#app',
+                data: {
+                    msg: 'hello vue'
+                }
+            })
+        </script>
+    </body>
+</html>
