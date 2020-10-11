@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="app">
+            <h1>导航部分</h1>
+            <router-link to="/home">首页</router-link>
+            <router-link to="/login">登录</router-link>
+            <router-link to="/list">列表</router-link>
+            <router-link to="/user/2">2号用户-路由传参</router-link>
+            <router-link to="/product?name=电脑">商品-查询传参</router-link>
+            <hr>
+            <h3>在某些场景，我们需要通过js的方式去跳转（编程式导航）</h3>
+            <input type="text">
+            <input type="text">
+            <button @click="login">登录</button>
+            <br>
+            <h3>编程式导航</h3>
+            <button @click="goList">去列表不传参</button>
+            <button @click="goUser">去用户-路由传参</button>
+            <button @click="goProduct">去商品-查询传参</button>
+            <router-view></router-view>
+        </div>
+
+        <script src="./vue.js"></script>
+        <script src="./vue-router.js"></script>
+        <script>
+            
+            // 需求：实现 首页 登录框 列表页的 单页操作
+           /* 
+           跳转和传参
+           跳转有两种方式：
+            1，声明式导航 （通过 router-link 跳转） 类似于 a 标签跳转
+                （1）不传参：
+                    <router-link to="/login">登录</router-link>
+                （2）路由传参（动态路由）
+                    <router-link to="/user/2">2号用户-路由传参</router-link>
+                    获取参数：$route.params.id
+                （3）查询传参
+                    <router-link to="/product?name=电脑">商品-电脑</router-link>
+                    获取参数：$route.query.name
+
+            2，编程式导航
+                this.$router === router  就是大的那个唯一的路由实例
+                this.$router.push (路径)
+                this.push(路径)
+
+
+                会在模块化环境中开发，不是所有的地方，都能够直接访问到 router
+                后面每个js文件都是一个独立的模块，有着自己的独立的作用域
+                在组件中如果需要访问到路由实例，就需要通过 this.$router
+           */
+
+        //    目前这个重复跳转时，报的警告，react 中已经修复，目前 vue 还没有，所以需要手动处理一下
+            const originalPush = VueRouter.prototype.push
+            VueRouter.prototype.push = function push(location) {
+                return originalPush.call(this, location).catch(err => err)
+            }
+
+
+           const Home ={
+               template:`
+               <div>我是home组件</div>
+               `
+           }
+
+           const router = new VueRouter({
+            routes:[
+                { path:'/',redirect:'/home'},
+                { path:'/home', component:Home},
+                { path:'/login', component:{ template:`<div>我是登录框</div>`}},
+                { path:'/list', component:{ template:`<div>我是列表框</div>`}},
+                { path:'/user/:id', component:{ template:`<div>我是用户页- {{ $route.params.id }}</div>`}},
+                { path:'/product', component:{ template:`<div>我是商品页- {{ $route.query.id }}</div>`}},
+            ]
+           })
+            const vm = new Vue({
+                el: '#app',
+                data: {
+                    msg: 'hello vue'
+                },
+                router,
+                methods:{
+                    login(){
+                        // router.push('/home')
+                        this.$router.push('/home')
+                    },
+                    goList(){
+                        // 不传参
+                        this.$router.push('/list')
+                    },
+                    goUser(){
+                        // 路由传参（动态路由）
+                        this.$router.push('/user/66')
+                    },
+                    goProduct(){
+                        // 查询传参
+                        this.$router.push('/product?id=88')
+                    },
+                }
+            })
+        </script>
+    </body>
+</html>

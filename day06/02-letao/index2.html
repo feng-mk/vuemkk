@@ -1,0 +1,174 @@
+sb 22:14:50
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <!-- 设置视口 -->
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>乐淘电商</title>
+  <link rel="stylesheet" href="./lib/mui/css/mui.css">
+  <link rel="stylesheet" href="./lib/fa/css/font-awesome.css">
+  <link rel="stylesheet" href="./css/common.css">
+</head>
+
+<body>
+
+  <div class="lt_container" id="app">
+    <div class="lt_header">
+      <a href="index.html" class="icon_left"><i class="fa fa-home"></i></a>
+      <h3>乐淘云购</h3>
+      <a href="search.html" class="icon_right"><i class="fa fa-search"></i></a>
+    </div>
+
+    <div class="lt_main">
+
+      <router-view></router-view>
+
+    </div>
+
+    <div class="lt_footer">
+
+      <ul>
+        <li>
+          <router-link to="/home"  >
+            <i class="fa fa-home"></i>
+            <p>首页</p>
+          </router-link>
+        </li>
+        <li>
+          <router-link to="/category">
+            <i class="fa fa-bars"></i>
+            <p>分类页</p>
+          </router-link>
+        </li>
+        <li>
+          <router-link to="/cart">
+            <i class="fa fa-shopping-cart"></i>
+            <p>购物车</p>
+          </router-link>
+        </li>
+        <li>
+          <router-link to="/user">
+            <i class="fa fa-user"></i>
+            <p>用户中心</p>
+          </router-link>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <script src="./js/vue.js"></script>
+  <script src="./js/vue-router.js"></script>
+  <script>
+    const Home={
+      template:`
+      <div>我是首页</div>
+      `
+    }
+    const Category={
+      template:`
+      <div>
+        <router-link to='/category'>默认</router-link>/
+        <router-link to='/category/first'>我是一级分类</router-link>/
+        <router-link to='/category/second'>我是二级分类</router-link>/
+     <router-view></router-view>
+        </div>
+ 
+      `
+    }
+    const Default={
+      template:`
+        <div>默认页</div>
+      `
+    }
+    const First={
+      template:`
+        <div>我是一级分类</div>
+      `
+    }
+    const Second={
+      template:`
+        <div>我是二级分类</div>
+      `
+    }
+    const Cart={
+      template:`
+      <div>我是购物车</div>
+      `
+    }
+    const User={
+      template:`
+      <div>
+        <button @click="fn">登录页</button>/
+
+        <button @click="fn2">注册页</button>/
+        
+        
+     <router-view></router-view>
+        </div>
+ 
+      `,
+
+      methods: {
+           fn () {
+            this.$router.push("/user/login")
+           },
+           fn2 (){
+            this.$router.push("/user/registe")
+           }
+      }
+    }
+    // <router-link to='/user/login'>登录页</router-link>/
+        // <router-link to='/user/registe'>注册页</router-link>/
+    const Login={
+      template:`
+        <div>登录页</div>
+      `
+    }
+   const Registe={
+    template:`
+        <div>注册页</div>
+      `
+   }
+      const router = new VueRouter({
+        routes:[
+          { path:'/', redirect:'/home' },
+          { path:'/home', component:Home },
+          { path:'/category', component:Category,
+            children:[
+              {path:'',component:Default},
+              {path:'first',component:First},
+              {path:'second',component:Second}
+            ]
+           },
+          { path:'/cart', component:Cart },
+          
+          { path:'/user', component:User ,
+          children:[
+            {path:'login',component:{template:`
+              <div>登录页</div>
+            `}},
+            {path:'registe',component:Registe}
+          ]
+          },
+        ],
+        linkActiveClass: "current"
+      })
+      const vm = new Vue({
+        el: '#app',
+        data: {},
+        router,
+        methods:{
+            login(){
+                // router.push('/home')
+                this.$router.push('/user/login')
+            },
+          
+            
+        },
+      })
+  </script>
+</body>
+
+</html>
